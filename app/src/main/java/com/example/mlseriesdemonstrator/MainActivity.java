@@ -13,11 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mlseriesdemonstrator.object.FaceDetectionActivity;
+import android.view.Gravity;
 import com.example.mlseriesdemonstrator.object.FaceRecognitionActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity implements AlgoListener {
 
@@ -27,14 +29,16 @@ public class MainActivity extends AppCompatActivity implements AlgoListener {
         setContentView(R.layout.activity_main);
 
         ArrayList<Algo> arrayList = new ArrayList<>();
-
         arrayList.add(new Algo(R.drawable.baseline_portrait_black_48, "Reconocimiento facial", FaceRecognitionActivity.class));
-
 
         AlgoAdapter algoAdapter = new AlgoAdapter(arrayList, this);
         RecyclerView recyclerView = findViewById(R.id.main_recycler_view);
         recyclerView.setAdapter(algoAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        // Centrar vertical y horizontalmente el RecyclerView
+        LinearLayout parentLayout = findViewById(R.id.parent_layout);
+        parentLayout.setGravity(Gravity.CENTER);
     }
 
     @Override
@@ -92,6 +96,12 @@ class AlgoViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
     public void bind(Algo algo) {
         this.algo = algo;
         iconImageView.setImageResource(algo.iconResourceId);
+        // Ajustar el tamaño del ImageView
+        ViewGroup.LayoutParams layoutParams = iconImageView.getLayoutParams();
+        layoutParams.width = 500; // Tamaño deseado en píxeles
+        layoutParams.height = 500; // Tamaño deseado en píxeles
+        iconImageView.setLayoutParams(layoutParams);
+
         algoTextView.setText(algo.algoText);
     }
 
