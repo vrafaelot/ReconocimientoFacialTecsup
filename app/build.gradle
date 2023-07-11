@@ -33,6 +33,7 @@ android {
     buildFeatures {
         mlModelBinding true
     }
+    namespace 'com.example.mlseriesdemonstrator'
 }
 
 dependencies {
