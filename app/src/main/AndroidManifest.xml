@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -23,21 +27,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MLSeriesDemonstrator">
-        <activity android:name=".MainActivity" android:exported="true" android:screenOrientation="userPortrait">
+
+        <!-- Cambia la actividad de lanzamiento a LoginActivity -->
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="userPortrait"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity
+            android:name=".CameraActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="userPortrait" />
+
+        <activity
             android:name=".object.FaceDetectionActivity"
             android:screenOrientation="userPortrait" />
 
-        <activity android:name=".object.FaceRecognitionActivity"
+        <activity
+            android:name=".object.FaceRecognitionActivity"
             android:screenOrientation="userPortrait" />
 
+        <!-- Agrega otras actividades aquí si es necesario -->
 
         <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
         <provider
@@ -49,6 +68,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/fileprovider" />
         </provider>
+
     </application>
 
 </manifest>
