@@ -96,11 +96,16 @@ class AlgoViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
     public void bind(Algo algo) {
         this.algo = algo;
         iconImageView.setImageResource(algo.iconResourceId);
+
         // Ajustar el tamaño del ImageView
         ViewGroup.LayoutParams layoutParams = iconImageView.getLayoutParams();
         layoutParams.width = 500; // Tamaño deseado en píxeles
         layoutParams.height = 500; // Tamaño deseado en píxeles
         iconImageView.setLayoutParams(layoutParams);
+
+        // Centrar la imagen horizontalmente y verticalmente
+        iconImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        iconImageView.setAdjustViewBounds(true);
 
         algoTextView.setText(algo.algoText);
     }
